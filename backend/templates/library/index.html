@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+  {% block content %}  
+    {% if user.is_authenticated %}
+      Это видит только авторизованный пользователь
+    {% endif %}
+    {% for post in page_obj %}
+      <ul>
+        <h2>
+          {{ post.name }}
+        </h2>
+        <h3>
+          Автор: {{ post.author }}
+        </h3>
+        <h4>
+          Год издания: {{ post.year_of_publication }}
+        </h4>
+        <hr>
+
+      </ul>  
+    {% endfor %}
+  {% endblock %}

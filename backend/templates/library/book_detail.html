@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+  {% block content %}  
+    <ul>
+    <h2>
+        {{ book.name }}
+    </h2>
+    <h3>
+        Автор: {{ book.author }}
+    </h3>
+    <h4>
+        Год издания: {{ book.year_of_publication }}
+    </h4>
+    <h4>
+        Краткое описание: {{ book.description }}
+    </h4>
+    <hr>
+
+    </ul>  
+  {% endblock %}

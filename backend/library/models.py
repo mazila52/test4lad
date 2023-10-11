@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 
 class Author(models.Model):
@@ -21,8 +22,10 @@ class Book(models.Model):
        'Название книги',
        max_length=100
     )
-    author = models.ManyToManyField(
+    author = models.ForeignKey(
         Author,
+        on_delete= models.CASCADE,
+        related_name='books',
         verbose_name='Автор(ы)'
     )
     year_of_publication = models.IntegerField('Год публикации')
