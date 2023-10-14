@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="{% url 'library:book_create' %}"> Создать запись книги </a>  
+<h2>Результаты поиска</h2>
   {% for book in books %}
     <ul>
       <h2>
@@ -13,7 +13,7 @@
         Год издания: {{ book.year_of_publication }}
       </h4>
       <hr>
+
     </ul>  
   {% endfor %}
-{% include 'includes/paginator.html' %}
 {% endblock %}

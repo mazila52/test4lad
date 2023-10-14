@@ -1,19 +1,36 @@
 {% extends 'base.html' %}
-  {% block content %}  
-    <ul>
-    <h2>
-        {{ book.name }}
-    </h2>
-    <h3>
-        Автор: {{ book.author }}
-    </h3>
-    <h4>
-        Год издания: {{ book.year_of_publication }}
-    </h4>
-    <h4>
-        Краткое описание: {{ book.description }}
-    </h4>
+{% block content %}  
+  <ul>
+  <h2>
+      {{ book.name }}
+  </h2>
+  <h3>
+      Автор: {{ book.author }}
+  </h3>
+  <h4>
+      Год издания: {{ book.year_of_publication }}
+  </h4>
+  <h4>
+      Краткое описание: {{ book.description }}
+  </h4>
+  <img src='{{ book.image.url }}' width='200'>
+  <hr>
+  </ul>
+  Комменатрии:
+  <br>
+  {% for review in reviews %}
+    {{ review.text }}
     <hr>
-
-    </ul>  
-  {% endblock %}
+  {% endfor %}
+  {% if user.is_authenticated %}
+  <form action="{% url 'library:book_review' book.id %}"  method="post">
+    {% csrf_token %}
+    <label>Ваш комментарий:</label>
+    <textarea name='text' required=''></textarea>
+    <button type="submit">Отправить</button>
+  </form>
+    <a href="{% url 'library:book_edit' book.id %}"> Редактировать </a>
+    <br>
+    <a href="{% url 'library:book_delete' book.id %}"> Удалить </a>
+  {% endif %}  
+{% endblock %}
